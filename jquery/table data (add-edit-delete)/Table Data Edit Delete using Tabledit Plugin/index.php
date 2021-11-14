@@ -1,0 +1,69 @@
+<?php
+$connect = mysqli_connect("localhost", "root", "", "test");
+$query = "SELECT * FROM product ORDER BY product_id ASC";
+$result = mysqli_query($connect, $query);
+?>
+<html>  
+ <head>  
+          <title>Live Table Data Edit Delete using Tabledit Plugin in PHP</title>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>            
+    <script src="jquery-tabledit-plugin/jquery.tabledit.min.js"></script>
+    </head>  
+    <body>  
+  <div class="container">  
+   <br />  
+   <br />  
+   <br />  
+            <div class="table-responsive">  
+    <h3 align="center">Live Table Data Edit Delete using Tabledit Plugin in PHP</h3><br />  
+    <table id="editable_table" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>ID</th>
+       <th>product Name</th>
+       <th>price</th>
+       <th>quantity</th>
+      </tr>
+     </thead>
+     <tbody>
+     <?php
+     while($row = mysqli_fetch_array($result))
+     {
+      echo '
+      <tr id='.$row["product_id"].'>
+       <td>'.$row["product_id"].'</td>
+       <td>'.$row["product_name"].'</td>
+       <td>'.$row["quantity"].'</td>
+       <td>'.$row["product_price"].'</td>
+      </tr>
+      ';
+     }
+     ?>
+     </tbody>
+    </table>
+   </div>  
+  </div>  
+ </body>  
+</html>  
+<script>  
+$(document).ready(function(){  
+     $('#editable_table').Tabledit({
+      url:'action.php',
+      columns:{
+       identifier:[0, "product_id"],
+       editable:[[1, 'product_name'], [2, 'quantity'], [3, 'product_price']]
+      },
+      restoreButton:false,
+      onSuccess:function(data, textStatus, jqXHR)
+      {//console.log(data);
+       if(data.action == 'delete')
+       {
+        $('#'+data.product_id).remove();
+       }
+      }
+     });
+ 
+});  
+ </script>

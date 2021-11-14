@@ -1,0 +1,29 @@
+// color variable declarations
+
+$header-bgcolor : #ffab73;
+$main-bgcolor : red;
+$footer-bgcolor : green;
+$para-fontSize : 15px;
+
+/* browser reset code  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background: $header-bgcolor; // call variable
+}
+
+main{
+    background: $main-bgcolor;
+}
+
+#about p{
+    font-size: $para-fontSize;
+}
+
+footer{
+    background: $footer-bgcolor;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align:center;"> jQuery crash course | Ajax </h1>
+
+<div id="container">
+     <div id="result">
+        
+     </div>
+     <ul id="users"></ul>
+    
+     <h1>ADD post</h1>
+     <form id="postForm" action="https://jsonplaceholder.typicode.com/posts">
+         <input type="text" id="title" placeholder="title"><br>
+         <textarea id="body" placeholder="body"></textarea><br>
+         <input type="submit" value="submit">
+
+     </form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+       $(document).ready(function(){
+      
+        /* 
+        $('#result').load('test.html' , function(responseTxt, statusTxt, xhr) {
+              if(statusTxt == "success"){
+                  console.log(xhr);
+                  alert('it went fine: '+xhr.statusText);
+              }else if(statusTxt == "error"){
+                  alert("Error: "+xhr.statusText);
+              }
+              
+          });
+          */
+          
+          /*
+          $.get('test.html', function(data){
+                $('#result').html(data);
+          });
+          */
+       
+        /*
+        $.getJSON('user.json', function(data){
+                 $.each(data, function(i , user){
+                    $('#users').append('<li>'+'NAME: '+user.FirstName+ " " +user.LastName+'</li>'
+                                       +'EMAIL: '+user.email);
+                 });
+        });
+        */
+        
+        /*
+        $.ajax({
+            method:'GET',
+            url: 'http://127.0.0.1:8000/user.json',
+            dataType: 'json'
+        }).done(function(data){
+            console.log(data);
+            $.map(data, function(user, i){
+              $('#result').append('<li>'+'NAME: '+user.FirstName+ " " +user.LastName+'</li>'
+                                       +'EMAIL: '+user.email);
+            });
+        });
+        */
+        
+        /*
+        $.ajax({
+            type: 'GET',
+            url: 'http://127.0.0.1:8000/user.json',
+            success: function(data){
+                console.log('success', data);
+                
+                $.map(data, function(user, i){
+                $('#result').append('<li>'+'NAME: '+user.FirstName+ " " +user.LastName+'</li>'
+                                       +'EMAIL: '+user.email);
+            });
+            },
+            error: function(){
+                alert('error loading ');
+            }
+        });
+        */
+
+        /*
+        $('#postForm').submit(function(e){
+            e.preventDefault();
+
+            var title = $('#title').val();
+            var body = $('#body').val();
+            var url = $(this).attr('action');
+            
+            $.post(url, {title:title, body:body}).done(function(data){
+               console.log('post save');
+               console.log(data);
+           });
+        });
+        */
+
+        $('#postForm').submit(function(e){
+            e.preventDefault(); 
+            
+            var post = {
+                title: $('#title').val(),
+                body: $('#body').val(),
+             };
+
+             $.ajax({
+                 type: 'post',
+                 url : $(this).attr('action'),
+                 data: post,
+                 
+                 success: function(data){
+                    console.log('post save');
+                    console.log(data);
+
+                    
+                    $('#result').append(data.id+'<li>'+'Title: '+data.title+'</li>'
+                                       +'Body: '+data.body+ '<button id='+ '"'+data.id+'"' + 'class=remove type=button>delete</button><br>');
+                   
+                },
+                 error: function(){
+                 alert('error saving post');
+                }
+             });
+             
+        });
+
+        $('#result').delegate('.remove', 'click', function(){
+            var $li = $(this).closest('li');
+            var url = https://jsonplaceholder.typicode.com/posts;
+
+            $.ajax({
+              type: 'delete',
+              url: url + $(this).attr('id'),
+              success: function(){
+                  $li.fadeOut(300, function(){
+                     $(this).remove();
+                  });
+              }
+            });
+        });
+
+        });
+    </script>
+</body>
+</html>

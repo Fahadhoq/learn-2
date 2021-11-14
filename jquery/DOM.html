@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery|DOM</title>
+    <style>
+        .special{
+           color: rgb(11, 33, 228);
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li>one</li>
+        <li class="special"> two</li>
+        <li>three</li>
+        <li>
+            <ul class="sublist1">
+               <li>1</li>
+               <li>2</li>
+               <li>3</li>
+                <ul class="sublist2">
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </ul>
+            
+        </li>
+         
+    </ul>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        // $('li').on('click', function(){
+        //    $(this).next().remove();
+        // });
+
+        // $('li').on('click', function(){
+        //    $(this).siblings().addClass('special');
+        // });
+
+        // $('.sublist').on('click', function(){
+        //   $(this).find('li').filter(':first').addClass('special');
+        // });
+
+        // $('li').on('click',function(){
+               
+        //        if($(this).is('.special')){
+        //            alert('special');
+        //        }else{
+        //         $(this).hide();
+        //        }
+        // });
+
+        $('.sublist1 li').on('click', function(){
+            //for any li in sublist1
+            // $(this).hide();
+            
+            //only for sulist1 li
+             if($(this).parent().is('.sublist1')){
+                $(this).hide();
+            }
+        });
+    </script>
+    
+</body>
+</html>

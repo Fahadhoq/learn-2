@@ -1,0 +1,96 @@
+// color variable declarations
+
+$header-bgcolor : #ffab73;
+$main-bgcolor : red;
+$footer-bgcolor : green;
+$para-fontSize : 15px;
+
+/* browser reset code  */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    background: $header-bgcolor; // call variable
+}
+
+main{
+    background: $main-bgcolor;
+}
+
+#about p{
+    font-size: $para-fontSize;
+}
+
+//each
+// @each $color in rgb(179, 255, 0), green, blue {
+//     .#{$colour}-text {
+//         color: $color;
+//     }
+// }
+
+$color: {
+    color1: red,
+    color2: green,
+    color3: blue;
+};
+
+@each $key, $color in $color {
+    .#{$color}-text {
+        color: $color;
+    }
+}
+
+
+
+//grid
+[class*="col-"]{
+   float: left;
+}
+
+//normal css
+// .col-1 {width: 8.33%;}
+// .col-2 {width: 16.66%;}
+// .col-3 {width: 25%;}
+// .col-4 {width: 33.33%;}
+// .col-5 {width: 41.66%;}
+// .col-6 {width: 50%;}
+// .col-7 {width: 58.33%;}
+// .col-8 {width: 66.66%;}
+// .col-9 {width: 75%;}
+// .col-10 {width: 83.33%;}
+// .col-11 {width: 91.66%;}
+// .col-12 {width: 100%;}
+
+//by for loop
+// through = from 1 through 4 = 1,2,3,4
+// to = from 1 to 4 = 1,2,3
+
+@for $i from 1 through 12 {
+    .col-#{$i}{
+        width: 100% / 12 * $i;
+    }
+}
+
+//while loop
+
+// $i: 1;
+
+// @while $i < 13 {
+//     .col-#{$i}{
+//         width: 100% / 12 * $i;
+//     }
+//     $i: $i +1;
+// }
+
+.row:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+footer{
+    background: $footer-bgcolor;
+}

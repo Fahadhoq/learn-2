@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    //calculator
+       var first = prompt("enter your first num : ");
+       var second = prompt("enter your second num : ");
+        
+       first = parseFloat(first);
+       second = parseFloat(second);
+
+       sum = first + second;
+       minus = first - second;
+       multi = first * second;
+       dive = first / second;
+
+       document.write("sum : " + sum + "<br/>");
+       document.write("minus : " + minus + "<br/>");
+       document.write("multi : " + multi + "<br/>");
+       document.write("dive : " + dive + "<br/>");
+    //calculator end
+
+
+    // fahrenheit to celsius
+       var fahrenheit =  prompt("enter farenhit temperature : ");
+
+         fahrenheit = parseFloat(fahrenheit);
+
+         var celsius = ( fahrenheit - 32 ) * 5/9;
+
+         celsius = celsius.toFixed(2);
+         
+         document.write("fahrenheit to celsius" + "<br/>");
+         document.write("celsius temperature is : " + celsius + "<br/>");
+    // fahrenheit to celsius
+    
+    // celsius to fahrenheit
+    var celsius = prompt("enter celsius temperature : ");
+
+      celsius = parseFloat(celsius);
+
+      var fahrenheit = celsius*9/5 + 32;
+
+      fahrenheit = fahrenheit.toFixed(2);
+      
+      document.write("celsius to fahrenheit" + "<br/>");
+      document.write("fahrenheit temperature is : " + fahrenheit + "<br/>");
+
+    //celsius to fahrenheit end     
+
+
+   </script>   
+</body>
+</html>
